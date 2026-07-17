@@ -241,7 +241,14 @@
 
         <div class="main-container" id="cardsTableContainer">
             <div class="board-title">📋 የካርቴላዎች ማውጫ (1 - 200)</div>
-            <div class="cards-list" id="cardsList"></div>
+            <div class="cards-list" id="cardsList">
+                <!-- ያለ ምንም ስህተት በግድ እንዲዘረዘሩ በ HTML የተሰሩ 200 ረድፎች -->
+                <script>
+                    for (let i = 1; i <= 200; i++) {
+                        document.write('<div class="card-row" onclick="selectCardAndHold(' + i + ')"><div class="card-number">ካርቴላ ቁጥር ' + i + '</div><div class="card-status">መድብ (Bet) 🎰</div></div>');
+                    }
+                </script>
+            </div>
         </div>
     </div>
 
@@ -271,11 +278,4 @@
     <script>
         const selectionPage = document.getElementById('selectionPage');
         const gamePage = document.getElementById('gamePage');
-        const cardsList = document.getElementById('cardsList');
         const leftNumbersBoard = document.getElementById('leftNumbersBoard');
-        const cardGrid = document.getElementById('cardGrid');
-        const luckyNumberDisplay = document.getElementById('luckyNumber');
-        const ballCountDisplay = document.getElementById('ballCount');
-        const selectedCardTitle = document.getElementById('selectedCardTitle');
-        const waitingOverlay = document.getElementById('waitingOverlay');
-
