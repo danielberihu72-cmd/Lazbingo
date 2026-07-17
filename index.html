@@ -11,96 +11,104 @@
             background-color: #0d0e15;
             color: #00f0ff;
             margin: 0;
-            padding: 12px;
+            padding: 10px;
             overflow-x: hidden;
-            text-align: center;
         }
         h1 {
             color: #ff00ff;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-            font-size: 24px;
-            margin: 5px 0 15px 0;
-        }
-        .board-title {
-            color: #00f0ff;
-            font-size: 14px;
-            margin: 10px 0 5px 0;
-            text-align: left;
-            font-weight: bold;
-            text-shadow: 0 0 5px #00f0ff;
+            text-shadow: 0 0 10px #ff00ff;
+            font-size: 22px;
+            margin: 5px 0;
         }
         
-        /* --- ገጽ 1፦ የካርቴላ መምረጫ ክፍል --- */
+        /* --- ገጽ 1፦ የደብተሩ ዋና ዲዛይን አቀማመጥ --- */
         #selectionPage { display: block; }
-        .header-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            margin-bottom: 15px;
+        
+        /* የላይኛው የመረጃ ሳጥኖች (Header) */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 12px;
         }
         .header-box {
+            flex: 1;
             background: #161925;
             border: 1px solid #ff00ff;
-            box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
-            border-radius: 8px;
-            padding: 8px 2px;
+            border-radius: 6px;
+            padding: 6px 2px;
             text-align: center;
+            box-shadow: 0 0 5px rgba(255, 0, 255, 0.2);
         }
-        .box-title { font-size: 11px; color: #ff00ff; margin-bottom: 4px; }
+        .box-title { font-size: 11px; color: #ff00ff; margin-bottom: 2px; font-weight: bold; }
         .box-value { font-size: 13px; font-weight: bold; color: #fff; }
-        
-        /* የ 30 ሰከንድ መጠበቂያ ሳጥን */
-        .waiting-overlay {
-            display: none;
-            background: rgba(22, 25, 37, 0.95);
-            border: 2px solid #ff00ff;
-            box-shadow: 0 0 20px #ff00ff;
-            border-radius: 12px;
-            padding: 25px 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .waiting-timer {
-            font-size: 54px;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
-            margin: 15px 0;
-        }
 
-        .main-container {
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px;
-        }
-        .cards-list {
+        /* የካርቴላዎች ማውጫ እና የ Slot አቀማመጥ */
+        .main-layout {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            max-height: 380px;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        
+        /* የግራ ክፍል፡ የ 1-200 ዝርዝር ሰሌዳ */
+        .cards-grid-container {
+            flex: 7;
+            background: rgba(0, 240, 255, 0.02);
+            border: 2px solid #00f0ff;
+            border-radius: 8px;
+            padding: 8px;
+            max-height: 420px;
             overflow-y: auto;
         }
-        .card-row {
+        .grid-title { font-size: 13px; color: #00f0ff; margin-bottom: 8px; text-align: left; font-weight: bold; }
+        .grid-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+        .slot-row {
             background: #161925;
             border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 6px;
-            padding: 14px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 10px 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
             cursor: pointer;
+            text-align: center;
         }
-        .card-row:active { 
-            background: #ff00ff; 
+        /* ካርቴላው ሲያዝ ወይም ሲቆለፍ */
+        .slot-row.locked {
+            background: #221226;
             border-color: #ff00ff;
-            box-shadow: 0 0 10px #ff00ff;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+            cursor: not-allowed;
         }
-        .card-number { font-size: 15px; font-weight: bold; color: #fff; }
-        .card-status { font-size: 12px; color: #00f0ff; background: rgba(0, 240, 255, 0.1); padding: 3px 10px; border-radius: 10px; font-weight: bold; }
 
-        /* --- ገጽ 2፦ ዋናው የጨዋታ ሜዳ ክፍል --- */
+        /* የቀኝ ክፍል፡ የተያዘ ስሎት ማሳያ (+ SLOT) */
+        .slot-sidebar {
+            flex: 3;
+            background: #161925;
+            border: 1px solid #ff00ff;
+            border-radius: 8px;
+            padding: 10px 4px;
+            min-height: 120px;
+            text-align: center;
+            box-shadow: 0 0 8px rgba(255, 0, 255, 0.2);
+        }
+        .sidebar-title { font-size: 11px; color: #ff00ff; font-weight: bold; margin-bottom: 10px; }
+        .my-slot-box {
+            background: #0d0e15;
+            border: 1px dashed #00f0ff;
+            border-radius: 4px;
+            padding: 12px 2px;
+            font-size: 13px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* --- ገጽ 2፦ ዋናው የጨዋታ ሜዳ ዲዛይን --- */
         #gamePage { display: none; }
         .game-header {
             display: grid;
@@ -108,146 +116,58 @@
             gap: 6px;
             margin-bottom: 12px;
         }
-        .game-header-box {
-            background: #161925;
-            border: 1px solid #00f0ff;
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-            border-radius: 8px;
-            padding: 8px 2px;
-            text-align: center;
-        }
-        .game-layout {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
+        .game-layout { display: flex; gap: 8px; align-items: flex-start; }
         
         .left-numbers {
             flex: 2.5;
             background: rgba(0, 240, 255, 0.02);
             border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 8px;
-            padding: 5px;
+            border-radius: 6px;
+            padding: 4px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-            max-height: 400px;
+            gap: 3px;
+            max-height: 380px;
             overflow-y: auto;
         }
-        .num-slot {
-            background: #11131c;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: #444;
-            font-size: 12px;
-            padding: 4px 0;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .num-slot.called {
-            background: #00f0ff;
-            color: #000;
-            font-weight: bold;
-            box-shadow: 0 0 8px #00f0ff;
-        }
+        .num-slot { background: #11131c; color: #444; font-size: 11px; padding: 4px 0; border-radius: 3px; font-weight: bold; }
+        .num-slot.called { background: #00f0ff; color: #000; box-shadow: 0 0 5px #00f0ff; }
 
         .center-cartela { flex: 5; }
-        .bingo-letters {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-            font-weight: bold;
-            color: #ff00ff;
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid #00f0ff;
-            border-radius: 8px;
-            padding: 6px;
-        }
-        .cell {
-            background: #161925;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            color: #fff;
-            border-radius: 4px;
-            padding: 14px 0;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .cell.marked {
-            background: #ff00ff;
-            border-color: #ff00ff;
-            box-shadow: 0 0 10px #ff00ff;
-        }
+        .bingo-letters { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; font-weight: bold; color: #ff00ff; font-size: 15px; margin-bottom: 4px; }
+        .grid-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; background: rgba(0, 240, 255, 0.05); border: 1px solid #00f0ff; border-radius: 6px; padding: 4px; }
+        .cell { background: #161925; border: 1px solid rgba(0, 240, 255, 0.2); color: #fff; border-radius: 3px; padding: 12px 0; font-size: 13px; font-weight: bold; }
+        .cell.marked { background: #ff00ff; border-color: #ff00ff; box-shadow: 0 0 8px #ff00ff; }
 
-        .right-display {
-            flex: 2.5;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-        .random-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid #ff00ff;
-            box-shadow: 0 0 12px #ff00ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            background: #161925;
-        }
-        .btn-bingo {
-            background: linear-gradient(45deg, #ff00ff, #00f0ff);
-            border: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 6px;
-            padding: 12px 5px;
-            font-size: 12px;
-            cursor: pointer;
-            width: 100%;
-        }
+        .right-display { flex: 2.5; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .random-circle { width: 55px; height: 55px; border-radius: 50%; border: 3px solid #ff00ff; box-shadow: 0 0 10px #ff00ff; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: #fff; background: #161925; }
+        .btn-bingo { background: linear-gradient(45deg, #ff00ff, #00f0ff); border: none; color: white; font-weight: bold; border-radius: 4px; padding: 10px 2px; font-size: 11px; cursor: pointer; width: 100%; }
     </style>
 </head>
 <body>
 
     <h1>🎰 ላዝ ቢንጎ 🎰</h1>
 
-    <!-- ================= ገጽ 1፦ የካርቴላ መምረጫ ክፍል ================= -->
+    <!-- ================= ገጽ 1፦ የካርቴላ መምረጫ እና መደብ መያዣ ================= -->
     <div id="selectionPage">
-        <div class="header-grid">
-            <div class="header-box"><div class="box-title">Room</div><div class="box-value">ላዝ ሩም</div></div>
+        <div class="header-container">
+            <div class="header-box"><div class="box-title">Bet</div><div class="box-value">10 ETB</div></div>
             <div class="header-box"><div class="box-title">Sold</div><div class="box-value" id="soldCount">00</div></div>
-            <div class="header-box"><div class="box-title">Time</div><div class="box-value">3:05</div></div>
-            <div class="header-box"><div class="box-title">Balance</div><div class="box-value">250.00</div></div>
+            <div class="header-box"><div class="box-title">Time</div><div class="box-value" id="countdownDisplay">30</div></div>
+            <div class="header-box"><div class="box-title">Balance</div><div class="box-value">250.00 ETB</div></div>
         </div>
 
-        <!-- የ 30 ሰከንድ መጠበቂያ ሳጥን -->
-        <div class="waiting-overlay" id="waitingOverlay">
-            <div style="font-size: 14px; color: #00f0ff; font-weight: bold;">⏳ የይለፍ ቆጠራ ተጀምሯል! እባክዎ ይጠብቁ...</div>
-            <div id="selectedInfo" style="font-size:13px; color:#fff; margin-top:6px; font-weight: bold;"></div>
-            <div class="waiting-timer" id="waitingTimer">30</div>
-            <div style="font-size: 11px; color: #ff00ff;">ሰው ቢገባም ባይገባም በራሱ ጊዜ ያሻግረዎታል!</div>
-        </div>
-
-        <div class="main-container" id="cardsTableContainer">
-            <div class="board-title">📋 የካርቴላዎች ማውጫ (1 - 200)</div>
-            <div class="cards-list" id="cardsList">
-                <!-- ያለ ምንም ስህተት በግድ እንዲዘረዘሩ በ HTML የተሰሩ 200 ረድፎች -->
-                <script>
-                    for (let i = 1; i <= 200; i++) {
-                        document.write('<div class="card-row" onclick="selectCardAndHold(' + i + ')"><div class="card-number">ካርቴላ ቁጥር ' + i + '</div><div class="card-status">መድብ (Bet) 🎰</div></div>');
-                    }
-                </script>
+        <div class="main-layout">
+            <!-- የግራ ክፍል (1-200 ዝርዝር) -->
+            <div class="cards-grid-container">
+                <div class="grid-title">📋 የካርቴላዎች ማውጫ (1 - 200)</div>
+                <div class="grid-slots" id="slotsGrid"></div>
+            </div>
+            
+            <!-- የቀኝ ክፍል (+ SLOT ማሳያ) -->
+            <div class="slot-sidebar">
+                <div class="sidebar-title">+ SLOT</div>
+                <div class="my-slot-box" id="mySlotDisplay">ባዶ</div>
             </div>
         </div>
     </div>
@@ -255,20 +175,20 @@
     <!-- ================= ገጽ 2፦ ዋናው የጨዋታ ሜዳ ክፍል ================= -->
     <div id="gamePage">
         <div class="game-header">
-            <div class="game-header-box"><div class="box-title">ደራሽ</div><div class="box-value">88 ETB</div></div>
-            <div class="game-header-box"><div class="box-title">ተጫዋቾች</div><div class="box-value">12</div></div>
+            <div class="game-header-box"><div class="box-title">ደራሽ</div><div class="box-value" id="derashDisplay">0 ETB</div></div>
+            <div class="game-header-box"><div class="box-title">ተጫዋቾች</div><div class="box-value" id="playersDisplay">0</div></div>
             <div class="game-header-box"><div class="box-title">Balls</div><div class="box-value" id="ballCount">00/75</div></div>
         </div>
 
         <div class="game-layout">
             <div class="left-numbers" id="leftNumbersBoard"></div>
             <div class="center-cartela">
-                <div id="selectedCardTitle" style="font-size:13px; color:#00f0ff; margin-bottom:6px; font-weight:bold; text-align:left;"></div>
+                <div id="selectedCardTitle" style="font-size:12px; color:#00f0ff; margin-bottom:5px; font-weight:bold; text-align:left;"></div>
                 <div class="bingo-letters"><div>B</div><div>I</div><div>N</div><div>G</div><div>O</div></div>
                 <div class="grid-container" id="cardGrid"></div>
             </div>
             <div class="right-display">
-                <div style="font-size:12px; color:#00f0ff; font-weight:bold;">እጣ ቁጥር</div>
+                <div style="font-size:11px; color:#00f0ff; font-weight:bold;">እጣ ቁጥር</div>
                 <div class="random-circle" id="luckyNumber">-</div>
                 <button class="btn-bingo" onclick="claimBingo()">🏆 ቢንጎ!</button>
             </div>
@@ -278,4 +198,39 @@
     <script>
         const selectionPage = document.getElementById('selectionPage');
         const gamePage = document.getElementById('gamePage');
+        const slotsGrid = document.getElementById('slotsGrid');
         const leftNumbersBoard = document.getElementById('leftNumbersBoard');
+        const cardGrid = document.getElementById('cardGrid');
+        const luckyNumberDisplay = document.getElementById('luckyNumber');
+        const ballCountDisplay = document.getElementById('ballCount');
+        const selectedCardTitle = document.getElementById('selectedCardTitle');
+        const mySlotDisplay = document.getElementById('mySlotDisplay');
+        const soldCountDisplay = document.getElementById('soldCount');
+        const countdownDisplay = document.getElementById('countdownDisplay');
+        const derashDisplay = document.getElementById('derashDisplay');
+        const playersDisplay = document.getElementById('playersDisplay');
+
+        let calledNumbers = [];
+        let timerSeconds = 30;
+        let timerInterval;
+        let gamePlayInterval;
+        let mySelectedCard = 0;
+        let totalSold = 0;
+
+        // 1. ከ 1 እስከ 200 የካርቴላ ሳጥኖችን መፍጠር
+        for (let i = 1; i <= 200; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'slot-row';
+            slot.innerText = i;
+            slot.setAttribute('id', 'slot-' + i);
+            slot.onclick = function() { buyCardSlot(i); };
+            slotsGrid.appendChild(slot);
+        }
+
+        // 2. የ 1-75 የዕጣ ሰሌዳ መፍጠሪያ
+        for (let i = 1; i <= 75; i++) {
+            const numSlot = document.createElement('div');
+            numSlot.className = 'num-slot';
+            numSlot.innerText = i;
+            numSlot.setAttribute('id', 'left-' + i);
+            leftNumbersBoard.appendChild(numSlot);
