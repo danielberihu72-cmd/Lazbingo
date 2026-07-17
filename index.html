@@ -6,7 +6,6 @@
     <title>ላዝ ቢንጎ - ቪአይፒ</title>
     <script src="https://telegram.org"></script>
     <style>
-        /* የመጀመሪያው ማራኪ የሳይበርፐንክ የኒዮን ከለር ስታይል */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0d0e15;
@@ -19,12 +18,12 @@
         h1 {
             color: #ff00ff;
             text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-            font-size: 26px;
+            font-size: 24px;
             margin: 5px 0 15px 0;
         }
         .board-title {
             color: #00f0ff;
-            font-size: 15px;
+            font-size: 14px;
             margin: 10px 0 5px 0;
             text-align: left;
             font-weight: bold;
@@ -32,9 +31,7 @@
         }
         
         /* --- ገጽ 1፦ የካርቴላ መምረጫ ክፍል --- */
-        #selectionPage {
-            display: block;
-        }
+        #selectionPage { display: block; }
         .header-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -52,7 +49,7 @@
         .box-title { font-size: 11px; color: #ff00ff; margin-bottom: 4px; }
         .box-value { font-size: 13px; font-weight: bold; color: #fff; }
         
-        /* የ 30 ሰከንድ መጠበቂያ ሳጥን ስታይል */
+        /* የ 30 ሰከንድ መጠበቂያ ሳጥን */
         .waiting-overlay {
             display: none;
             background: rgba(22, 25, 37, 0.95);
@@ -82,7 +79,7 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
-            max-height: 400px;
+            max-height: 380px;
             overflow-y: auto;
         }
         .card-row {
@@ -94,7 +91,6 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: all 0.2s;
         }
         .card-row:active { 
             background: #ff00ff; 
@@ -105,9 +101,7 @@
         .card-status { font-size: 12px; color: #00f0ff; background: rgba(0, 240, 255, 0.1); padding: 3px 10px; border-radius: 10px; font-weight: bold; }
 
         /* --- ገጽ 2፦ ዋናው የጨዋታ ሜዳ ክፍል --- */
-        #gamePage {
-            display: none;
-        }
+        #gamePage { display: none; }
         .game-header {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -128,7 +122,6 @@
             align-items: flex-start;
         }
         
-        /* የግራ ክፍል (1-75 ሰሌዳ) */
         .left-numbers {
             flex: 2.5;
             background: rgba(0, 240, 255, 0.02);
@@ -150,26 +143,20 @@
             border-radius: 4px;
             font-weight: bold;
         }
-        /* እጣ የወጣበት ቁጥር ሲሸፈን */
         .num-slot.called {
             background: #00f0ff;
             color: #000;
             font-weight: bold;
             box-shadow: 0 0 8px #00f0ff;
-            border-color: #00f0ff;
         }
 
-        /* የመሃል ክፍል (Playing Cartela) */
-        .center-cartela {
-            flex: 5;
-        }
+        .center-cartela { flex: 5; }
         .bingo-letters {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 4px;
             font-weight: bold;
             color: #ff00ff;
-            text-shadow: 0 0 5px #ff00ff;
             font-size: 16px;
             margin-bottom: 5px;
         }
@@ -179,7 +166,6 @@
             gap: 4px;
             background: rgba(0, 240, 255, 0.05);
             border: 1px solid #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
             border-radius: 8px;
             padding: 6px;
         }
@@ -192,14 +178,12 @@
             font-size: 14px;
             font-weight: bold;
         }
-        /* በካርቴላው ላይ ቁጥር ሲመታ */
         .cell.marked {
             background: #ff00ff;
             border-color: #ff00ff;
             box-shadow: 0 0 10px #ff00ff;
         }
 
-        /* የቀኝ ክፍል (Random Number Display) */
         .right-display {
             flex: 2.5;
             display: flex;
@@ -231,7 +215,6 @@
             font-size: 12px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
         }
     </style>
 </head>
@@ -245,15 +228,15 @@
             <div class="header-box"><div class="box-title">Room</div><div class="box-value">ላዝ ሩም</div></div>
             <div class="header-box"><div class="box-title">Sold</div><div class="box-value" id="soldCount">00</div></div>
             <div class="header-box"><div class="box-title">Time</div><div class="box-value">3:05</div></div>
-            <div class="header-box"><div class="box-title">Balance</div><div class="box-value">0.00</div></div>
+            <div class="header-box"><div class="box-title">Balance</div><div class="box-value">250.00</div></div>
         </div>
 
-        <!-- የ 30 ሰከንድ መጠበቂያ ብቅ ባይ ሳጥን -->
+        <!-- የ 30 ሰከንድ መጠበቂያ ሳጥን -->
         <div class="waiting-overlay" id="waitingOverlay">
-            <div style="font-size: 15px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 5px #00f0ff;">⏳ ጨዋታው ሊጀምር ነው! እባክዎ ይጠብቁ...</div>
-            <div id="selectedInfo" style="font-size:13px; color:#fff; margin-top:6px;"></div>
+            <div style="font-size: 14px; color: #00f0ff; font-weight: bold;">⏳ የይለፍ ቆጠራ ተጀምሯል! እባክዎ ይጠብቁ...</div>
+            <div id="selectedInfo" style="font-size:13px; color:#fff; margin-top:6px; font-weight: bold;"></div>
             <div class="waiting-timer" id="waitingTimer">30</div>
-            <div style="font-size: 12px; color: #888;">ሌሎች ተጫዋቾች እየገቡ ነው</div>
+            <div style="font-size: 11px; color: #ff00ff;">ሰው ቢገባም ባይገባም በራሱ ጊዜ ያሻግረዎታል!</div>
         </div>
 
         <div class="main-container" id="cardsTableContainer">
@@ -271,21 +254,27 @@
         </div>
 
         <div class="game-layout">
-            <!-- የግራ ክፍል (1-75 ዝርዝር) -->
             <div class="left-numbers" id="leftNumbersBoard"></div>
-
-            <!-- የመሃል ክፍል (የጨዋታ ካርቴላ) -->
             <div class="center-cartela">
                 <div id="selectedCardTitle" style="font-size:13px; color:#00f0ff; margin-bottom:6px; font-weight:bold; text-align:left;"></div>
-                <div class="bingo-letters">
-                    <div>B</div><div>I</div><div>N</div><div>G</div><div>O</div>
-                </div>
+                <div class="bingo-letters"><div>B</div><div>I</div><div>N</div><div>G</div><div>O</div></div>
                 <div class="grid-container" id="cardGrid"></div>
             </div>
-
-            <!-- የቀኝ ክፍል (እጣ ቁጥር እና ቢንጎ ቁልፍ) -->
             <div class="right-display">
                 <div style="font-size:12px; color:#00f0ff; font-weight:bold;">እጣ ቁጥር</div>
                 <div class="random-circle" id="luckyNumber">-</div>
                 <button class="btn-bingo" onclick="claimBingo()">🏆 ቢንጎ!</button>
             </div>
+        </div>
+    </div>
+
+    <script>
+        const selectionPage = document.getElementById('selectionPage');
+        const gamePage = document.getElementById('gamePage');
+        const cardsList = document.getElementById('cardsList');
+        const leftNumbersBoard = document.getElementById('leftNumbersBoard');
+        const cardGrid = document.getElementById('cardGrid');
+        const luckyNumberDisplay = document.getElementById('luckyNumber');
+        const ballCountDisplay = document.getElementById('ballCount');
+        const selectedCardTitle = document.getElementById('selectedCardTitle');
+        const waitingOverlay = document.getElementById('waitingOverlay');
