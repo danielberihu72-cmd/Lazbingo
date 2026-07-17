@@ -78,7 +78,6 @@
             cursor: pointer;
             text-align: center;
         }
-        /* ካርቴላው ሲያዝ ወይም ሲቆለፍ */
         .slot-row.locked {
             background: #221226;
             border-color: #ff00ff;
@@ -167,13 +166,11 @@
         </div>
 
         <div class="main-layout">
-            <!-- የግራ ክፍል (1-200 ዝርዝር) -->
             <div class="cards-grid-container">
                 <div class="grid-title">📋 የካርቴላዎች ማውጫ (1 - 200)</div>
                 <div class="grid-slots" id="slotsGrid"></div>
             </div>
             
-            <!-- የቀኝ ክፍል (+ SLOT ማሳያ) -->
             <div class="slot-sidebar">
                 <div class="sidebar-title">+ SLOT</div>
                 <div class="my-slot-box" id="mySlotDisplay">ባዶ</div>
@@ -226,9 +223,12 @@
         let mySelectedCard = 0;
         let totalSold = 0;
 
-        // 1. የ 1-200 ካርቴላዎችን ያለ ምንም ስህተት በግዳጅ በስክሪኑ ላይ መፍጠሪያ
+        // 💡 ይሄ ነው ዋናው ማስተካከያ! የሞባይል ካሽ እንዳይቆልፈው በንጹህ የጃቫስክሪፕት ህግ የተፃፈ የ 1-200 ምርት
+        let slotsHTML = "";
         for (let i = 1; i <= 200; i++) {
-            const slot = document.createElement('div');
-            slot.className = 'slot-row';
-            slot.innerText = i;
-            slot.setAttribute('id', 'slot-' + i);
+            slotsHTML += '<div class="slot-row" id="slot-' + i + '" onclick="buyCardSlot(' + i + ')">' + i + '</div>';
+        }
+        slotsGrid.innerHTML = slotsHTML;
+
+        for (let i = 1; i <= 75; i++) {
+            const numSlot = document.createElement('div');
